@@ -14,9 +14,7 @@ body {
   align-items: flex-start;
 }
 
-.main {
-  flex: 1;
-}
+.main { flex: 1; }
 
 .sidebar {
   width: 320px;
@@ -39,15 +37,16 @@ label {
   align-items: center;
 }
 
-input {
-  width: 50px;
-}
+input { width: 50px; }
 
 #board {
-  display: inline-grid;        
-  position: relative;         
+  display: inline-grid;
+  position: relative;
   background: #101010;
   border: 1px solid #50FF50;
+
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .cell {
@@ -71,40 +70,55 @@ input {
 
 .pieceGrid {
   display: inline-grid;
-  background: #101010;
-  border: 1px solid #50FF50;
+  background: color-mix(in srgb, var(--piece-color, #101010) 18%, #101010);
+
+  /* border without affecting size */
+  box-shadow: inset 0 0 0 2px var(--piece-color, #50FF50);
+
   cursor: grab;
   user-select: none;
 }
 
-.pieceGrid:active {
-  cursor: grabbing;
+.pieceGrid:active { cursor: grabbing; }
+
+.pieceGrid .cell {
+  border-color: color-mix(in srgb, var(--piece-color, #50FF50) 70%, #50FF50);
+  background: color-mix(in srgb, var(--piece-color, #101010) 10%, #101010);
 }
 
-
+/* --- ghost --- */
 .ghost {
   position: absolute;
   left: 0;
   top: 0;
-  background: rgba(80, 255, 80, 0.15);
-  border: 2px solid #50FF50;
+
+  background: color-mix(in srgb, var(--piece-color, #50FF50) 20%, transparent);
+  border: 2px solid var(--piece-color, #50FF50);
+
   pointer-events: none;
 }
 
-
+/* --- placed pieces --- */
 .placedPiece {
   position: absolute;
   left: 0;
   top: 0;
-  background: rgba(80, 255, 80, 0.10);
-  border: 2px solid #50FF50;
+
+  display: inline-grid;
+  background: color-mix(in srgb, var(--piece-color, #101010) 18%, #101010);
+
+  /* border without affecting size/position */
+  box-shadow: inset 0 0 0 2px var(--piece-color, #50FF50);
 
   cursor: grab;
   user-select: none;
 }
 
-.placedPiece:active {
-  cursor: grabbing;
+.placedPiece:active { cursor: grabbing; }
+
+.placedPiece .cell {
+  border-color: color-mix(in srgb, var(--piece-color, #50FF50) 70%, #50FF50);
+  background: color-mix(in srgb, var(--piece-color, #101010) 10%, #101010);
 }
 
 .removeBtn{
@@ -125,6 +139,7 @@ input {
   position: absolute;
   top: 2px;
   right: 2px;
+  z-index: 5;
 }
 
 .pieceHeader{
@@ -134,4 +149,25 @@ input {
   margin-bottom: 6px;
   color: #50FF50;
   font-size: 12px;
+  gap: 8px;
 }
+
+/* square color input, no border */
+.colorPicker {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+
+  border: 0;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.colorPicker::-webkit-color-swatch-wrapper { padding: 0; }
+.colorPicker::-webkit-color-swatch { border: 0; border-radius: 0; }
+.colorPicker::-moz-color-swatch { border: 0; border-radius: 0; }
