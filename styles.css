@@ -1,0 +1,102 @@
+* { box-sizing: border-box; }
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+.layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.main {
+  flex: 1;
+}
+
+.sidebar {
+  width: 320px;
+  background: #101010;
+  border: 1px solid #50FF50;
+  padding: 12px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+label {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+input {
+  width: 50px;
+}
+
+#board {
+  display: inline-grid;        
+  position: relative;         
+  background: #101010;
+  border: 1px solid #50FF50;
+}
+
+.cell {
+  width: 30px;
+  height: 30px;
+  background: #101010;
+  border: 1px solid #50FF50;
+}
+
+#pieceList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pieceItem {
+  border: 1px solid #50FF50;
+  padding: 8px;
+  background: #000;
+}
+
+.pieceGrid {
+  display: inline-grid;
+  background: #101010;
+  border: 1px solid #50FF50;
+  cursor: grab;
+  user-select: none;
+}
+
+.pieceGrid:active {
+  cursor: grabbing;
+}
+
+
+.ghost {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(80, 255, 80, 0.15);
+  border: 2px solid #50FF50;
+  pointer-events: none;
+}
+
+
+.placedPiece {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(80, 255, 80, 0.10);
+  border: 2px solid #50FF50;
+  pointer-events: none;
+}
