@@ -98,5 +98,11 @@ input {
   top: 0;
   background: rgba(80, 255, 80, 0.10);
   border: 2px solid #50FF50;
-  pointer-events: none;
+
+  cursor: grab;
+  user-select: none;
+}
+
+.placedPiece:active {
+  cursor: grabbing;
 }
